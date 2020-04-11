@@ -48,7 +48,6 @@ git status `查看目前git状态 branch add commit`
     通过git的方式删除
     首先我们将整个仓库clone到本地
     git clone https://github.com/***
-
     在clone下来的本地仓库里初始化
     git init
 
