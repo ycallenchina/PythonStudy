@@ -2,6 +2,7 @@
 import random
 import time
 
+#实验
 # for i in range(10):
 # 	q=[1,2,3,4]
 # 	print(random.randint(1,10))	
@@ -25,7 +26,7 @@ class role:
 		print(f'{self.name},受到了{powr}点伤害.剩余{self.blood}点血')
 
 	def die(self):#死亡动作:告诉别人我已88
-		print(f'imsorry{self.name},i have to die!')
+		print(f'imsorry,{self.name},i have to die!------------------------------{self.name},is die!')
 
 
 class player(role):#特殊角色设计,继承了role的属性和受伤,死亡方法,但有自己独特的攻击方法1,疯狂,2普通.
@@ -50,13 +51,17 @@ all=[role('eff',5,100),role('allen',10,50),role('周星星',7,48),player('me',8,
 
 #随机选择2位选手进行攻击.死亡的选手将被移除.最终剩余一位的选手胜出.
 while len(all)>1:
-	lucky=random.sample(all,2)
-	lucky[0].atack(lucky[1])
+	lucky=random.sample(all,2)#随机选出2名选手
+	r1=lucky[0]
+	r2=lucky[1]
 
-	if lucky[1].blood<1:
-		all.remove(lucky[1])
-		print(lucky[1].die())
+	r1.atack(r2)#随机战斗回合
+
+	if r2.blood<1:#判断死亡,移除死亡者
+		r2.die()
+		all.remove(r2)
+		
 	time.sleep(1)#停顿1秒
 
-print(lucky[0].name,'is winner!')
+print(lucky[0].name,'is winner!')#打印出胜出人
 
