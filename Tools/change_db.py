@@ -14,6 +14,6 @@ class made_db(object):
         return self.list
 
 a=[1,2,[4,4],(2,2)]
-b=made_db
-b.扁平化多维列表(a)
-print(b)
+b=made_db()
+c=b.扁平化多维列表(a)
+print(c)
