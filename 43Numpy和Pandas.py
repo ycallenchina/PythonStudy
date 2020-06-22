@@ -27,4 +27,4 @@ print(k)
 y=k+f#矩阵加法运算
 print(y)
 print(y.T)
-y.T.to_excel('E:/pyNote/调用资料/43classNew.xlsx','Sheet1')#保存为excel,但是会覆盖整个excel表,建议新建.
+# y.T.to_excel('E:/pyNote/调用资料/43classNew.xlsx','Sheet1')#保存为excel,但是会覆盖整个excel表,建议新建.
