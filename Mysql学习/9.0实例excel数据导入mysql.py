@@ -25,11 +25,12 @@ sht=wb.sheets['sheet1']
 
 # 读取excel表sheet1内所有数据(expand用法不明,A2有起始列的意思,有自动识别内容意思)
 a=sht.range('A2').expand().value
+print(a)
 # mysql插入语句
 cursor = connection.cursor()
 for i in a:
-    cursor.execute(f"INSERT INTO persons VALUES ('{i[0]}','{i[1]}')")
-    print(i[0])
+    cursor.execute(f"INSERT INTO persons3 VALUES ('{i[0]}','{i[1]}')")
+    # print(i[0])
 
 # 关闭excel,mysql
 wb.save()
