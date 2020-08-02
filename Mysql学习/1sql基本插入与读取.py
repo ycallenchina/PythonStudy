@@ -11,7 +11,13 @@ connection=pymysql.connect(host='localhost',
                            port=3306,
                            charset='utf8')
 cursor = connection.cursor()
-# 插入语句:INTO 表名 VALUES (内容)
-cursor.execute("INSERT INTO file VALUES ('6', 'qaq', 'pp', 'Be4ij4ing')")
 
+def 执行sql(x=0):
+
+	if x==1:# 插入语句,内容需要匹配字段数:
+		cursor.execute("INSERT INTO persons6 VALUES ('7000', 'qaq')")
+	if x==2:# 在指定字段插入内容:
+		cursor.execute("INSERT INTO code600118 (Date, close) VALUES ('Wilson', 'Champs-Elysees')")
+
+执行sql(0)
 connection.close()
