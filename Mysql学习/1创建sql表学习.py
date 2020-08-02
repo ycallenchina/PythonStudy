@@ -11,7 +11,7 @@ connection=pymysql.connect(host='localhost',
 cursor = connection.cursor()
 
 # 执行SQL语句创建新表
-sql = "CREATE TABLE Persons3(Id_P int,内容 varchar(255))ENGINE=InnoDB DEFAULT CHARSET=utf8;"
-cout = cursor.execute(sql)
+sql = "CREATE TABLE Persons3(Id_P varchar(255),内容 varchar(255))ENGINE=MyISAM DEFAULT CHARSET=utf8;"
+cursor.execute(sql)
 
 connection.close()
