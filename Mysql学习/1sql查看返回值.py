@@ -17,18 +17,19 @@ cursor = connection.cursor()
 # cursor.fetchone()：将只返回一条结果，返回单个元组如('id','title')。
 # cursor.fetchall() :也将返回所有结果，返回二维元组，如(('id','title'),),
 # cursor.fetchmany(3)获取前三行数据，元组包含元组
-x=111
-sql = f'select {x} from file'
-print(type(sql))
-# cout = cursor.execute(sql)
+
+sql = f'select * from 材料库'
+cursor.execute(sql)
 # print("记录数量： " + str(cout))
 #
-# print(cursor.fetchmany(3))  #获取前三行数据，元组包含元组
-# print(cursor.fetchone())  #取下一行!!!
+# print(cursor.fetchmany(100))  #获取前三行数据，元组包含元组
+print(cursor.fetchall())  #取下一行!!!
 # print(cursor.fetchall())  #取剩下所有行!!
 #
-# print('空了吗?')
-# for row in cursor.fetchall():
-#     print(row)#因为fetchall已经取完,所以现在的fetchall为空
-#
+print('空了吗?')
+for row in cursor.fetchall():
+    print('剩余',row)#因为fetchall已经取完,所以现在的fetchall为空
+
+
+
 connection.close()
