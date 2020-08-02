@@ -14,6 +14,10 @@ cursor = connection.cursor()
 
 #创建语句:
 #创建表,表面,persons3 表头字段Id_p为int类型,varchar为字符串255类型,指定Id_p为key.搜索引擎为InnoDB,默认为CHARSET=utf8编码.
+#搜索引擎:
+	#InnoDB 感觉暂定更先进的引擎,但是python写入插入语句对数据库无效
+	#MyISAM 较常规的引擎,可以用python写入插入语句
+
 sql = "CREATE TABLE Persons3(Id_P int,内容 varchar(255),PRIMARY KEY (`Id_P`))ENGINE=InnoDB DEFAULT CHARSET=utf8;"
 		#数据类型说明
 		'''数据类型
