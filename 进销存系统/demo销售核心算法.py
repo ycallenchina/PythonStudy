@@ -15,7 +15,7 @@ def 内嵌销量表(CL_name,CL_need):#含有递归算法
 
 		if CL_name in sheetname_All_GlobalX:
 			CL_need=CL_need*CL_need_percent#第二次材料表实际的用量
-			sheetname_All_GlobalX.remove(CL_name)#递归算法的反死循环机制,每进入下一级,删除本级元素.防无线递归.
+			sheetname_All_GlobalX.remove(CL_name)#递归反死循环机制,每进入下一级,删除本级元素.防无线递归.
 			内嵌销量表(CL_name,CL_need)
 		else:
 			#用获取的材料名对应的数值相减;算出本次库存剩余数据,并updata到材料库里
@@ -39,7 +39,7 @@ for index,row in df.iterrows():#获取销量表的菜单名,及销量
 		if CL_name in sheetname_All_GlobalX:
 			sql_fig=sql材料的用量(CL_sheet,CL_name)
 			CL_need=sql_fig*CL_sales_GlobalX#材料用量=单位用量*销量
-			sheetname_All_GlobalX.remove(CL_name)#递归算法的反死循环机制,每进入下一级,删除本级元素.防无线递归.
+			sheetname_All_GlobalX.remove(CL_name)#递归反死循环机制,每进入下一级,删除本级元素.防无线递归.
 			内嵌销量表(CL_name,CL_need)
 		else:
 			sql_fig1=sql材料的用量(CL_sheet,CL_name)#配方数据
@@ -50,5 +50,5 @@ for index,row in df.iterrows():#获取销量表的菜单名,及销量
 			updata_db=round(updata_db,2)#保留2位小数
 			# cursor.execute(f"UPDATE 材料库 SET 用量 = '{updata_db}' WHERE 材料='{CL_name}'")
 			print(f"UPDATE 材料库 SET 用量 = '{updata_db}' WHERE 材料='{CL_name}'")
-print(sheetname_All_GlobalX)
+
 connection.close()
