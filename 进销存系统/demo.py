@@ -14,7 +14,7 @@ connection=pymysql.connect(host='localhost',
                            charset='utf8')
 cursor = connection.cursor()
 
-def 读取表创建表写入内容(data='E:/PythonStudy_Git/调用资料/data_db.xlsx'):
+def 读取菜名创建sql配方表并写入内容(data='E:/PythonStudy_Git/调用资料/data_db.xlsx'):
 	#读取excel内容,并用sheet名创建表名,第一行名创建keys,最后插入内容
 
 	df=pd.read_excel(data,sheet_name = None)#读取excel表格
@@ -34,36 +34,41 @@ def 读取表创建表写入内容(data='E:/PythonStudy_Git/调用资料/data_db
 			print(sql2)
 			# cursor.execute(sql2)#执行sql
 
-def 创建材料库(data='E:/PythonStudy_Git/调用资料/材料库2.xlsx'):
+def 创建材料库(data='E:/PythonStudy_Git/调用资料/配方表.xlsx'):
 
 	df=pd.read_excel(data,sheet_name = None)#读取excel表格
 
+	sheetname_All=[]
+	#创建表及字段
 	Csql_columns=''
-	for i in df:#读取最后一个i表名
-		pass
-	for c in df[i].columns:#读取列名,并创建表材料库,和列名.
+	for i in df:
+		sheetname_All.append(i)
+	for c in df[i].columns:#读取列名,并创建表材料库,和字段.
 		Csql_columns+=c+' varchar(255),'
 	sql = f"CREATE TABLE 材料库({Csql_columns[:-1]})ENGINE=MyISAM DEFAULT CHARSET=utf8;"	
-	print(sql)
+	# print(sql)
+	# print(sheetname_All)
 	cursor.execute(sql)
+
+	#插入内容
 
 	noecho=[]#建立无重复的列表
 	for i in df:
 		for index,row in df[i].iterrows():#读取行row,并插入内容
-			if row[0] in noecho:#如果材料名重复就pass,不重复就加入noecho列表
+			if row[0] in noecho+sheetname_All:#如果材料名重复或者是配方表名就pass,不重复就加入noecho列表
 				pass
 			else:
 				noecho.append(row[0])
 				sql2=f"INSERT INTO 材料库 VALUES "+str(tuple(row))
-				print(sql2)
+				# print(sql2)
 				cursor.execute(sql2)#执行sql
 
 def 从sql提取数据创建excel():
 
 	cursor.execute(f'select * from 材料库')
 	df = pd.DataFrame(cursor.fetchall())
-	print(df)
-	# df.to_excel('E:/PythonStudy_Git/调用资料/材料库.xlsx','Sheet1')
+	# print(df)
+	df.to_excel('E:/PythonStudy_Git/调用资料/材料库.xlsx','Sheet1')
 
 def 批量删除sql表():
 	data='E:/PythonStudy_Git/调用资料/data_db.xlsx'
@@ -71,7 +76,7 @@ def 批量删除sql表():
 	for i in df:#读取表名i,并执行sql语句
 		cursor.execute(f"DROP TABLE {i}")
 
-def 读取表创建表写入内容_extra(data='E:/PythonStudy_Git/调用资料/data_db.xlsx'):
+def 读取菜名创建sql配方表并写入内容_extra(data='E:/PythonStudy_Git/调用资料/data_db.xlsx'):
 	#读取excel内容,并用sheet名创建表名,第一行名创建keys,最后插入内容
 	#补充extra:用量key里的内容只保留数字
 
@@ -101,6 +106,5 @@ def 读取表创建表写入内容_extra(data='E:/PythonStudy_Git/调用资料/d
 			print(sql2)		
 			cursor.execute(sql2)#执行sql
 
-
-
+# 从sql提取数据创建excel()
 connection.close()
