@@ -22,12 +22,19 @@ Ctrl+L ：选择光标所在整行
 Ctrl + J： 把当前选中区域合并为一行
 Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身（即分为四屏）
 
-自设快捷键
+自设快捷键 
+step:
+Tools>>Record marco
+...录制的东西
+Tools>>stop Recording marco
+Tools>>sace marco
+preferences>>key bindings设置
+
 ctrl+p print()
 ctrl+alt+p  print(f'  {sys._getframe().f_lineno}  行结果:',)
 ctrl+alt+t  type()
-ctrl+shift+[  行头
-ctrl+shift+]  行尾
+alt+[  行头
+alt+]  行尾
 # '''sublime 快捷键
 # 1.操作
 # ctrl+`:打开Sublime Text 控制台（Esc退出）
