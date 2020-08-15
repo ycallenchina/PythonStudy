@@ -14,7 +14,7 @@ cursor = connection.cursor()
 def 执行sql(x=0):
 
 	if x==1:#删除表
-		cursor.execute("DROP TABLE 材料库")
+		cursor.execute("DROP TABLE 柚子茶配方表")
 	if x==2:#清空表
 		cursor.execute("TRUNCATE TABLE file2")
 	if x==3:#删除数据库
@@ -28,7 +28,7 @@ def 执行sql(x=0):
 		#UPDATE 表名 SET 字段名 = 'Fred' WHERE 字段名(所在行) = 'Wilson'(的那一行) 
 	return 
 
-执行sql(6)
+执行sql(1)
 
 connection.close()
 
