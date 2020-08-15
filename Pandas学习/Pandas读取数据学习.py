@@ -13,7 +13,7 @@ import sys
 	3.2,用df[数字],来得到每个DataFrame的内容.
 '''
 
-df=pd.read_excel('E:/PythonStudy_Git/调用资料/pystudy.xlsx',sheet_name = 0)#读取excel表格
+df=pd.read_excel('E:/PythonStudy_Git/调用资料/pystudy2.xlsx',sheet_name = None)#读取excel表格
 print(type(df))#DataFrame的属性:两个索引,一是行索引index,二是列索引columns
 for i in df:
 	print (i)
@@ -25,21 +25,22 @@ for i in df:
 a=[]
 k=0
 q=0
-for index,row in df.iteritems():#取pandas数据,按照每次取一列/行数据来取,index为列号,row为列/行内容
-	q+=1
-	for i in range(len(row)):
-		a.append(row[i])
-		k+=1
-print(q)#计数器q
-print(k)#计数器k,看循环次数
-print(a)	
+# for index,row in df.iteritems():#取pandas数据,按照每次取一列/行数据来取,index为列号,row为列/行内容
+# 	q+=1
+# 	for i in range(len(row)):
+# 		a.append(row[i])
+# 		k+=1
+# print(q)#计数器q
+# print(k)#计数器k,看循环次数
+# print(a)	
 
-def 写入excel多表():#pandas写入excel多张sheet表方法
+def 写入excel多表(df):#pandas写入excel多张sheet表方法
 	
-	with pd.ExcelWriter(r'E:/PythonStudy_Git/调用资料/材料库2.xlsx') as xlsx:
-    	for i in df:
-    		df[i].to_excel(xlsx, sheet_name=f"{i}", index=False)
+	with pd.ExcelWriter(r'E:/PythonStudy_Git/调用资料/newforPF.xlsx') as xlsx:
+		for i in df:
+			df[i].to_excel(xlsx, sheet_name=f"{i}", index=False)
 
+写入excel多表(df)
 
 # b=np.array(a)#列表转换为array格式
 # df = pd.DataFrame(a)#转换为dataframe格式
