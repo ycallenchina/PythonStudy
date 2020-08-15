@@ -4,17 +4,18 @@ import sys
 sys.path.append("..")#为了import引用上一级包
 from Tools.sql_db import *
 
-def 内嵌销量表(CL_name,CL_need):#含有递归算法
+def 内嵌销量表(CL_sheet,CL_need):#含有递归算法
 	
-	CL_sheet=CL_name
 	CL_list=sql表的材料list(CL_sheet)
 
 	for CL_name in CL_list:
 
 		CL_need_percent=sql材料的用量(CL_sheet,CL_name)/sql表的总用量(CL_sheet)
 
-		if CL_name in sheetname_All_GlobalX:
+		if CL_name+'配方表' in sheetname_All_GlobalX:
 			CL_need=CL_need*CL_need_percent#第二次材料表实际的用量
+
+			CL_name+='配方表'
 			sheetname_All_GlobalX.remove(CL_name)#递归反死循环机制,每进入下一级,删除本级元素.防无线递归.
 			内嵌销量表(CL_name,CL_need)
 		else:
@@ -27,18 +28,22 @@ def 内嵌销量表(CL_name,CL_need):#含有递归算法
 			print(f"UPDATE 材料库 SET 用量 = '{updata_db}' WHERE 材料='{CL_name}'")
 
 df=pd.read_excel('E:/PythonStudy_Git/调用资料/配方表.xlsx',sheet_name = None)#读取excel表格,所有sheet表
-sheetname_All_GlobalX=[i for i in df]#获取已有配方表名
+sheetname_All_GlobalX=[i for i in df]#获取已有配方表名(删掉'配方表'三字)
 
 df=pd.read_excel('E:/PythonStudy_Git/调用资料/销量表.xlsx',sheet_name = 0)#读取excel表格,第一张sheet表
+记录表(df,'销售记录表')
+
 for index,row in df.iterrows():#获取销量表的菜单名,及销量
 	CL_sheet,CL_sales_GlobalX=row
+	CL_sheet+='配方表'
 	CL_list=sql表的材料list(CL_sheet)
 
 	#执行sql获取表的材料名
 	for CL_name in CL_list:#遍历sql表咖喱酱里的材料名
-		if CL_name in sheetname_All_GlobalX:
-			sql_fig=sql材料的用量(CL_sheet,CL_name)
-			CL_need=sql_fig*CL_sales_GlobalX#材料用量=单位用量*销量
+		if CL_name+'配方表' in sheetname_All_GlobalX:
+			CL_need=sql材料的用量(CL_sheet,CL_name)*CL_sales_GlobalX#材料用量=单位用量*销量
+			
+			CL_name+='配方表'
 			sheetname_All_GlobalX.remove(CL_name)#递归反死循环机制,每进入下一级,删除本级元素.防无线递归.
 			内嵌销量表(CL_name,CL_need)
 		else:
