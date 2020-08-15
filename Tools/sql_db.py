@@ -42,3 +42,25 @@ def sql表的材料list(表名):
 	cursor.execute(f"select 材料 from {表名}")
 	return goto_1list(cursor.fetchall())
 
+def sql整表(表名):
+  cursor.execute(f"select * from {表名}")
+  return cursor.fetchall()
+
+def sql表的字段(表名):
+    cursor.execute(f'SHOW COLUMNS FROM {表名}')
+    sql_column=cursor.fetchall()
+    keys=[]
+    for i in range(len(sql_column)):
+      keys.append(sql_column[i][0])
+    return  tuple(keys)
+
+def 记录表(df,表名):
+  db_time=str(df.columns[1])
+
+  for index,row in df.iterrows():
+    if row[1]!=0:
+      sql=f"INSERT INTO {表名} VALUES "+str(tuple(row)+(db_time,))
+      cursor.execute(sql)
+    # print(sql)
+
+    
