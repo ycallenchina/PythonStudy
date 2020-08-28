@@ -15,9 +15,10 @@ cursor = connection.cursor()
 def 执行sql(x=0):
 
 	if x==1:# 插入语句,内容需要匹配字段数:
-		cursor.execute("INSERT INTO persons6 VALUES ('7000', 'qaq')")
+		cursor.execute("INSERT INTO 材料库变动记录表 VALUES ('柚子酱', '-55','2020-08-18','销减','')")
 	if x==2:# 在指定字段插入内容:
 		cursor.execute("INSERT INTO code600118 (Date, close) VALUES ('Wilson', 'Champs-Elysees')")
-
-执行sql(0)
+	if x==3:# 在指定字段插入内容 方法2:
+		cursor.execute("INSERT INTO code600118 set Date='Wilson2', close='Champs-Elysees'")
+执行sql(3)
 connection.close()
