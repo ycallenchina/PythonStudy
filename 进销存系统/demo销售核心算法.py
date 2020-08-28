@@ -27,10 +27,9 @@ def 内嵌销量表(CL_sheet,CL_need):#含有递归算法
 			# cursor.execute(f"UPDATE 材料库 SET 用量 = '{updata_db}' WHERE 材料='{CL_name}'")
 			print(f"UPDATE 材料库 SET 用量 = '{updata_db}' WHERE 材料='{CL_name}'")
 
-df=pd.read_excel('E:/PythonStudy_Git/调用资料/配方表.xlsx',sheet_name = None)#读取excel表格,所有sheet表
-sheetname_All_GlobalX=[i for i in df]#获取已有配方表名(删掉'配方表'三字)
+sheetname_All_GlobalX=PF_all_GlobalX#取出全球变量已有配方表名
 
-df=pd.read_excel('E:/PythonStudy_Git/调用资料/销量表.xlsx',sheet_name = 0)#读取excel表格,第一张sheet表
+df=pd.read_excel('E:/PythonStudy_Git/调用资料/销售表.xlsx',sheet_name = 0)#读取excel表格,第一张sheet表
 记录表(df,'销售记录表')
 
 for index,row in df.iterrows():#获取销量表的菜单名,及销量
