@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 import sys
 sys.path.append("..")#为了import引用上一级包
 from Tools.sql_db import *
@@ -26,13 +24,12 @@ def 内嵌销量表(CL_sheet,CL_need):#含有递归算法
 			updata_db=round(updata_db,2)#保留2位小数
 			CL_sheet_MinCount[CL_name]=updata_db
 
-df=pd.read_excel('E:/PythonStudy_Git/调用资料/配方表.xlsx',sheet_name = None)#读取excel表格,所有sheet表
-sheetname_All_GlobalX=[i for i in df]#获取已有配方表名(删掉'配方表'三字)
+sheetname_All_GlobalX=PF_all_GlobalX
+PF_all=PF_all_GlobalX.copy()
 
-df=pd.read_excel('E:/PythonStudy_Git/调用资料/销量表.xlsx',sheet_name = 0)#读取excel表格,第一张sheet表
-for index,row in df.iterrows():#获取销量表的菜单名,及销量
-	CL_sheet,CL_sales_GlobalX=row
-	CL_sheet+='配方表'
+# df=pd.read_excel('E:/PythonStudy_Git/调用资料/销量表.xlsx',sheet_name = 0)#读取excel表格,第一张sheet表
+for CL_sheet in PF_all:#获取销量表的菜单名,及销量
+
 	CL_list=sql表的材料list(CL_sheet)
 	CL_sheet_MinCount={}
 
