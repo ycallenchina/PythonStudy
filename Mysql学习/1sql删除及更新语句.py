@@ -14,7 +14,7 @@ cursor = connection.cursor()
 def 执行sql(x=0):
 
 	if x==1:#删除表
-		cursor.execute("DROP TABLE 柚子茶配方表")
+		cursor.execute("DROP TABLE 操作日志记录表")
 	if x==2:#清空表
 		cursor.execute("TRUNCATE TABLE file2")
 	if x==3:#删除数据库
