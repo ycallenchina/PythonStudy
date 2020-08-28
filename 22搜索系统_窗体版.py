@@ -1,4 +1,5 @@
 #窗体fk控件实践
+
 import os
 from tkinter import Tk ,Entry,Text,Button
 def kai():
