@@ -77,10 +77,11 @@ def 批量删除sql表():
 		cursor.execute(f"DROP TABLE {i}")
 
 def 手动建sql表():
-	sql = f"CREATE TABLE 校准记录表(材料 varchar(255),用量 varchar(255),时间 varchar(255))ENGINE=MyISAM DEFAULT CHARSET=utf8;"	
-	cursor.execute(sql)
+	sql_old = f"CREATE TABLE 材料库变动记录表(材料 varchar(255),用量 varchar(255),时间 varchar(255),操作内容 varchar(255),备注 varchar(255) NULL DEFAULT NULL)ENGINE=MyISAM DEFAULT CHARSET=utf8;"	
+	sql=f"CREATE TABLE `操作日志记录表` ( `目标名` VARCHAR(255) NOT NULL , `操作内容` VARCHAR(255) NOT NULL , `时间` VARCHAR(255) NOT NULL , `备注` VARCHAR(255) NULL DEFAULT NULL ) ENGINE = MyISAM DEFAULT CHARSET=utf8;"
+	cursor.execute(sql_old)
 
 
-
+手动建sql表()
 
 connection.close()
