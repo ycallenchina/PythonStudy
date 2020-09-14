@@ -1,4 +1,4 @@
-
+	
 import re
 line = "Cats are smarter than dogs";
 # 正则基本方法:re.search
