@@ -22,6 +22,15 @@ Ctrl+L ：选择光标所在整行
 Ctrl + J： 把当前选中区域合并为一行
 Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身（即分为四屏）
 
+窗口打开
+(1)ctrl+shift+n 打开新Sublime
+(2)ctrl+shift+w 关闭Sublime，关闭所有打开文件
+(3)ctrl+shift+t 重新打开最近关闭文件
+(4)ctrl+n 新建文件
+(5)ctrl+shift+s 另存为
+(6)ctrl+f4 关闭文件
+(7)ctrl+w 关闭
+
 自设快捷键 
 step:
 Tools>>Record marco
