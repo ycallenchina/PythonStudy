@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3d3cc8f0-2eae-41a3-8bb7-293a4cc7bebc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Tools/sql_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/sql_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/try.py" beforeDir="false" afterPath="$PROJECT_DIR$/try.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/调用资料/newforPF.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/调用资料/newforPF.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/调用资料/配方表new.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/进销存系统/demo查看已有配方表.py" beforeDir="false" afterPath="$PROJECT_DIR$/进销存系统/demo查看已有配方表.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/进销存系统/demo销售核心算法.py" beforeDir="false" afterPath="$PROJECT_DIR$/进销存系统/demo销售核心算法.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="PythonStudy_Git" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gCsGMv7Fp1KyGxTzG2zkM2a4SQ" />
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3d3cc8f0-2eae-41a3-8bb7-293a4cc7bebc" name="Default Changelist" comment="" />
+      <created>1597629812010</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597629812010</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
