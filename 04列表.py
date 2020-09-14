@@ -1,4 +1,4 @@
-#列表资料网站 https://www.runoob.com/python3/python3-list.html
+ #列表资料网站 https://www.runoob.com/python3/python3-list.html
 
 import random as ran
 x=['eff','Allen','Xman','Q博士','98','55']
