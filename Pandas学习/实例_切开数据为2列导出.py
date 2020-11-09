@@ -18,9 +18,9 @@ for i in s:#遍历每行数据
 			break
 		q+=1
 b=np.array(a)#列表转换为numpy.array格式,做维度变化
-# result = b.reshape((66,2 ))
+result = b.reshape((66,2 ))
 print(a)
-
+print(result)
 # df=pd.DataFrame(result)#转换为pandas.dataframe数据准备导出excle
 # print(df)
 # df.to_excel('E:/pyNote/调用资料/材料单.xlsx','Sheet2')
