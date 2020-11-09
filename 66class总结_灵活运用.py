@@ -24,6 +24,3 @@ class list_update2(list):
 y=list_update2([1,2,3])
 print(y)
 
-class shuxue():
-	shuxue.name='高数'
-	shuxue.power=100
