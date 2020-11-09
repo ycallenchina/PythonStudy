@@ -41,6 +41,7 @@ pygame.init()#初始化pygame 加载此电脑声卡显卡等驱动
 
 screen=pygame.display.set_mode((500,280))#设置游戏窗口大小
 back_img=pygame.image.load('E:/pyNote/调用资料/view.jpg')#加载背景图
+
 h_s=[
 hourse('black',5,'E:/pyNote/调用资料/马.png',100),
 hourse('red',10,'E:/pyNote/调用资料/马2.png',200)
