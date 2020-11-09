@@ -16,8 +16,8 @@ class mishu(object):
 
 m1=mishu()#创建类
 m2=mishu()
-print('m1,m2类型:',type(m1),type(m2))#m1,m2开辟了不同的地址
-print('m1,m2地址:',id(m1),id(m2))
+print('m1,m2类型:',type(m1),type(m2))#类型
+print('m1,m2地址:',id(m1),id(m2))#m1,m2开辟了不同的地址
 print()
 
 m1.name='张秘书'#实例,添加属性
