@@ -14,7 +14,7 @@ class Game:
     
     def get_loc(self):#可以访问私有属性的方法getter
         return self.__loc
-
+ 
     def set_loc(self,x):#可以设置私有属性的方法setter
         self.__loc=x
     #补充:还可以使用annotaion @标注 来访问和设置私有属性
