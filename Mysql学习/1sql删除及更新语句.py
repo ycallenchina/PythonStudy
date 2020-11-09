@@ -14,7 +14,7 @@ cursor = connection.cursor()
 def 执行sql(x=0):
 
 	if x==1:#删除表
-		cursor.execute("DROP TABLE 操作日志记录表")
+		cursor.execute("DROP TABLE SSE上交所指数")
 	if x==2:#清空表
 		cursor.execute("TRUNCATE TABLE file2")
 	if x==3:#删除数据库
@@ -24,10 +24,11 @@ def 执行sql(x=0):
 	if x==5:#删除多行内容
 		cursor.execute("delete from code600118 where Date in('7000')")
 	if x==6:#更新内容
-		cursor.execute("UPDATE code600118 SET volume = '88888' WHERE Date = '2019-11-15'")
-		#UPDATE 表名 SET 字段名 = 'Fred' WHERE 字段名(所在行) = 'Wilson'(的那一行) 
+		cursor.execute("UPDATE code600118 SET volume = NULL WHERE Date = '2019-11-15'")
+	if x==7:#创建表
+		cursor.execute( "CREATE TABLE Persons3(Id_P varchar(255),内容 varchar(255))ENGINE=MyISAM DEFAULT CHARSET=utf8;")
 	return 
-
+	
 执行sql(1)
 
 connection.close()
