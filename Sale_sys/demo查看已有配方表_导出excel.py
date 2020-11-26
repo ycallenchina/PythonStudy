@@ -13,7 +13,7 @@ with pd.ExcelWriter(r'E:/PythonStudy_Git/调用资料/newforPF.xlsx') as xlsx:#e
 	for PF_sheet in PF_all:
 		df=pd.DataFrame(sql整表(PF_sheet))#从sql获取整张表转换为DataFrame
 		df.columns=sql表的字段(PF_sheet)#从sql获取表的列名
-		df.to_excel(xlsx, sheet_name=f"{PF_sheet}", index=False)
+		df.to_excel(xlsx, sheet_name=f"{PF_sheet}", index=False)#index=False不需要索引列
 		print(df)
 
 connection.close()
