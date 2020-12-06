@@ -1,0 +1,1 @@
+DROP TABLE csi中证集合
