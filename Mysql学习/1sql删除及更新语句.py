@@ -22,7 +22,7 @@ def 执行sql(x=0):
 	if x==4:#删除内容行
 		cursor.execute("delete from persons6 where 内容='qaq'")
 	if x==5:#删除多行内容
-		cursor.execute("delete from code600118 where Date in('7000')")
+		cursor.execute("delete from code600118 where Date in('7000','9000')")
 	if x==6:#更新内容
 		cursor.execute("UPDATE code600118 SET volume = NULL WHERE Date = '2019-11-15'")
 	if x==7:#创建表
