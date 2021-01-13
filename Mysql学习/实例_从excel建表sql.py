@@ -18,7 +18,7 @@ cursor = connection.cursor()
 # def 读取菜名创建sql配方表并写入内容(data):
 	#读取excel内容,并用sheet名创建表名,第一行名创建keys,最后插入内容
 
-表名="E:/PythonStudy_Git/调用资料/导出测试.xlsx"
+表名="D:/PythonStudy_Git/调用资料/导出测试.xlsx"
 #创建表
 df=pd.read_excel(表名,sheet_name = None)#读取excel表格
 
@@ -32,13 +32,13 @@ for i in df:#读取表名i,并创建
 		Csql_columns+=c+' varchar(255),'
 	sql = f"CREATE TABLE {PF_name}({Csql_columns[:-1]})ENGINE=MyISAM DEFAULT CHARSET=utf8;"	
 	print(sql)
-	cursor.execute(sql)#执行sql
+	# cursor.execute(sql)#执行sql
 	
 	#内容插入
 	for index,row in df[i].iterrows():#读取行row,并插入内容
 		sql2=f"INSERT INTO {PF_name} VALUES "+str(tuple(row))
 		print(sql2)
-		cursor.execute(sql2)#执行sql
+		# cursor.execute(sql2)#执行sql
 
 connection.close()
 
