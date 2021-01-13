@@ -44,4 +44,15 @@ def 写入excel多表(df):#pandas写入excel多张sheet表方法
 
 # b=np.array(a)#列表转换为array格式
 # df = pd.DataFrame(a)#转换为dataframe格式
+# df列名获取    :for column in df1.columns.values: 读取df的列名
 # df.to_excel('E:/pyNote/调用资料/材料单.xlsx','Sheet1')
+# df.to_csv时候乱码问题解决,df.to_excel('E:/pyNote/调用资料/材料单.xlsx',encoding="utf_8_sig")
+
+#显示所有列
+pd.set_option('display.max_columns', None)#pd数据显示所以列
+#显示所有行
+pd.set_option('display.max_rows', None)
+#设置value的显示长度为100，默认为50
+pd.set_option('max_colwidth',100)
+#显示前10行
+# df.head(10)
