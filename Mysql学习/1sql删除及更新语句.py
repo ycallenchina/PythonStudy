@@ -14,13 +14,13 @@ cursor = connection.cursor()
 def 执行sql(x=0):
 
 	if x==1:#删除表
-		cursor.execute("DROP TABLE SSE上交所指数")
+		cursor.execute("DROP TABLE 信用卡卡临时")
 	if x==2:#清空表
-		cursor.execute("TRUNCATE TABLE file2")
+		cursor.execute("TRUNCATE TABLE 金卡20年50期")
 	if x==3:#删除数据库
 		cursor.execute("DROP DATABASE 数据库名称")
 	if x==4:#删除内容行
-		cursor.execute("delete from persons6 where 内容='qaq'")
+		cursor.execute("delete from 微信账表 where 交易时间='2021/1/1 0:58'")
 	if x==5:#删除多行内容
 		cursor.execute("delete from code600118 where Date in('7000','9000')")
 	if x==6:#更新内容
@@ -29,7 +29,7 @@ def 执行sql(x=0):
 		cursor.execute( "CREATE TABLE Persons3(Id_P varchar(255),内容 varchar(255))ENGINE=MyISAM DEFAULT CHARSET=utf8;")
 	return 
 	
-执行sql(1)
+执行sql(4)
 
 connection.close()
 

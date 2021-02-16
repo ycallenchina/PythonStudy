@@ -31,5 +31,7 @@ for row in cursor.fetchall():
     print('剩余',row)#因为fetchall已经取完,所以现在的fetchall为空
 
 
+def 返回sql的字段名():
+	line=cursor.description#为二维元组
 
 connection.close()

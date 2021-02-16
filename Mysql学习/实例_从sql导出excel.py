@@ -18,8 +18,11 @@ cursor = connection.cursor()
 # def 读取菜名创建sql配方表并写入内容(data):
 	#读取excel内容,并用sheet名创建表名,第一行名创建keys,最后插入内容
 
-sql表名='andyou9月明细'
-导出路径='E:/PythonStudy_Git/调用资料/导出测试.xlsx'
+def 保存csv文件(保存路径,df):
+    df.to_csv(保存路径,encoding='utf_8_sig',index=False)
+
+sql表名='财务汇总临时'
+导出路径='C:/Users/YcAllenEffy/Desktop/已处理账表2次/汇总.csv'
 
 #导出df内容
 cursor.execute(f"select * from {sql表名}")
@@ -30,8 +33,8 @@ sql_column=cursor.fetchall()
 keys=[i[0] for i in sql_column]
 df.columns=tuple(keys)
 
+print(df)
+保存csv文件(导出路径,df)
 
-# print(df)
-df.to_excel(导出路径,'Sheet1',index=False)
 connection.close()
 
