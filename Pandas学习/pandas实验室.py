@@ -4,6 +4,31 @@ import pandas as pd
 import numpy as np
 import chardet
 
+def Random_Time(size):
+    import datetime
+    import time
+    import random
+     
+    end_time=datetime.datetime.now()
+    start_time=datetime.datetime.now() + datetime.timedelta(days=-10) # 当前时间减去3分钟
+     
+    a1=tuple(start_time.timetuple()[0:9])    #设置开始日期时间元组（2020-04-11 16:30:21）
+    a2=tuple(end_time.timetuple()[0:9])   #设置结束日期时间元组（2020-04-11 16:33:21）
+     
+    start=time.mktime(a1)    #生成开始时间戳
+    end=time.mktime(a2)      #生成结束时间戳
+     
+    #随机生成日期字符串
+    time_list=[]
+    for i in range(size):
+        t=random.randint(start,end)    #在开始和结束时间戳中随机取出一个
+        date_touple=time.localtime(t)          #将时间戳生成时间元组
+        date=time.strftime("%Y-%m-%d %H:%M:%S",date_touple)  #将时间元组转成格式化字符串（2020-04-11 16:33:21）
+        time_list.append(date)
+    
+    return tuple(time_list)
+
+
 boolean=[True,False]
 gender=["男","女"]
 color=["white","black","yellow"]
@@ -16,7 +41,7 @@ df1=pd.DataFrame({
     "color":[color[x] for x in np.random.randint(0,len(color),10) ]
     }
 )    
-df4=pd.DataFrame({
+df2=pd.DataFrame({
     "height":np.random.randint(150,190,10),
     "weight":np.random.randint(40,90,10),
     "smoker":[boolean[x] for x in np.random.randint(0,2,10)],
@@ -25,6 +50,16 @@ df4=pd.DataFrame({
     "color2":[color[x] for x in np.random.randint(0,len(color),10) ]
     }
 ) 
+df3=pd.DataFrame({
+    "time":Random_Time(10),
+    "height":np.random.randint(150,190,10),
+    "weight":np.random.randint(40,90,10),
+    "smoker":[boolean[x] for x in np.random.randint(0,2,10)],
+    "gender":[gender[x] for x in np.random.randint(0,2,10)],
+    "age":np.random.randint(15,90,10),
+    "color2":[color[x] for x in np.random.randint(0,len(color),10) ]
+    }
+    )
 
 def 金额列clean(df):
     df[["记账金额","余额"]]=df[["记账金额","余额"]].applymap(lambda x:x.replace(',',''))
@@ -73,5 +108,8 @@ def 插入索引列(df):
 if __name__ == '__main__':
     pd.set_option('display.max_columns', None)#显示所有df列
 
-
-    print(df4[df4['gender']!='男'])
+    df3['time'] = pd.to_datetime(df3['time'])
+    print(df3)
+    df3=df3[df3['time']>'2021-2-10']
+    df3=df3[df3['time']<='2021-2-13']
+    print(df3)

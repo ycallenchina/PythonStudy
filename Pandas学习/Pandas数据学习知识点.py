@@ -13,7 +13,19 @@ import sys
 	3.2,用df[数字],来得到每个DataFrame的内容.
 '''
 
-df=pd.read_excel('E:/PythonStudy_Git/调用资料/pystudy2.xlsx',sheet_name = None)#读取excel表格
+boolean=[True,False]
+gender=["男","女"]
+color=["white","black","yellow"]
+df=pd.DataFrame({
+    "height":np.random.randint(150,190,10),
+    "weight":np.random.randint(40,90,10),
+    "smoker":[boolean[x] for x in np.random.randint(0,2,10)],
+    "gender":[gender[x] for x in np.random.randint(0,2,10)],
+    "age":np.random.randint(15,90,10),
+    "color":[color[x] for x in np.random.randint(0,len(color),10) ]
+    }
+)
+ 
 print(type(df))#DataFrame的属性:两个索引,一是行索引index,二是列索引columns
 for i in df:
 	print (i)
@@ -76,6 +88,18 @@ def 获取列名方法(df):
 	print(list(df))
 	print(df.column.tolist())
 	print(df.columns)
+
+def df时间属性(df):
+	df['time'] = pd.to_datetime(df['time'])#转换列为datetime格式
+	data['year']=data['time'].dt.year#增加年列
+	data['day']=data['time'].dt.day#增加日列
+	data['hour']=data['time'].dt.hour#增加小时列
+	data['minute']=data['time'].dt.minute#增加分钟列
+	
+	df=df[df['time']>'2021-2-10']#筛选时间大于2-10号的,包括2-10
+	df=df[df['time']<'2021-2-13']#筛选时间小于2-13号的,不包括2-13
+	df[df['time'].dt.month==2]#筛选月份为2月的记录
+	pass
 
 # b=np.array(a)#列表转换为array格式
 # df = pd.DataFrame(a)#转换为dataframe格式
