@@ -1,15 +1,5 @@
 
-import pandas as pd
-import  pymysql
-import  pymysql.cursors
 
-connection=pymysql.connect(host='localhost',
-                           user='root',
-                           password='123456',
-                           db='test_data',
-                           port=3306,
-                           charset='utf8')
-cursor = connection.cursor()
 
 def 保存csv文件(保存路径,df):
     df.to_csv(保存路径,encoding='utf_8_sig',index=False)
@@ -38,7 +28,7 @@ def 合并sql表(核销期):
 
 	UNION ALL
 
-	SELECT 序号,'支付宝' AS 所属, 付款时间,金额_元,收支,余额,商品名称,交易对方,备注,核销,财务期
+	SELECT 序号,'支付宝' AS 所属, 交易创建时间,金额_元,收支,余额,商品名称,交易对方,备注,核销,财务期
 	FROM 支付宝账表
 	WHERE 财务期='{核销期}'
 
@@ -47,11 +37,22 @@ def 合并sql表(核销期):
 	return sql
 
 def 导出sql表为csv(合并期,导出路径,play=0):
+	import pandas as pd
+	import  pymysql
+	import  pymysql.cursors
+
+	connection=pymysql.connect(host='localhost',
+	                       user='root',
+	                       password='123456',
+	                       db='test_data',
+	                       port=3306,
+	                       charset='utf8')
+	cursor = connection.cursor()
 
 	sql=合并sql表(合并期)
 	cursor = connection.cursor()
 	cursor.execute(sql)
-	keys=[i[0] for i in cursor.description]#去sql字段名
+	keys=[i[0] for i in cursor.description]#取出sql字段名
 
 	df=pd.DataFrame(cursor.fetchall())
 	df.columns=tuple(keys)
@@ -63,11 +64,12 @@ def 导出sql表为csv(合并期,导出路径,play=0):
 		# print(df)
 		保存csv文件(导出路径,df)
 
+	connection.close()			
+
 if __name__ == '__main__':
 
-	合并期='21年3期'
+	合并期='21年4期'
 	导出路径=f'C:/Users/YcAllenEffy/Desktop/财务账/{合并期}明细2.csv'
-	导出sql表为csv(合并期,导出路径,play=0)
+	导出sql表为csv(合并期,导出路径,play=1)
 
 
-	connection.close()

@@ -108,8 +108,10 @@ def 插入索引列(df):
 if __name__ == '__main__':
     pd.set_option('display.max_columns', None)#显示所有df列
 
-    df3['time'] = pd.to_datetime(df3['time'])
-    print(df3)
-    df3=df3[df3['time']>'2021-2-10']
-    df3=df3[df3['time']<='2021-2-13']
-    print(df3)
+
+
+    df = pd.DataFrame(columns=['A', 'B', 'C', 'D'])
+    print(df)
+    b={'height':'199','A':'100'}
+    df=df.append(b,ignore_index=True)
+    print(df)

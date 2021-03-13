@@ -101,6 +101,16 @@ def df时间属性(df):
 	df[df['time'].dt.month==2]#筛选月份为2月的记录
 	pass
 
+def 添加行记录(df):
+
+    record={'height':'199'}
+    df=df.append(record,ignore_index=True)
+	return df
+
+def 创建新df():
+	df = pd.DataFrame(columns=['A', 'B', 'C', 'D'])
+	return df
+
 # b=np.array(a)#列表转换为array格式
 # df = pd.DataFrame(a)#转换为dataframe格式
 # df列名获取    :for column in df1.columns.values: 读取df的列名

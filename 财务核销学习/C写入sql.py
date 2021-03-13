@@ -1,22 +1,10 @@
 import pandas as pd
 import numpy as np
 import sys
-import  pymysql
-import  pymysql.cursors
 import chardet
 
-#获取一个数据库连接，注意如果是UTF-8类型的，需要制定数据库
-#port 必须是数字不能为字符串
-#db是 数据库名
-connection=pymysql.connect(host='localhost',
-                           user='root',
-                           password='123456',
-                           db='test_data',
-                           port=3306,
-                           charset='utf8')
-cursor = connection.cursor()
-
 def 建表SQL语句(df,表名):
+
     head=f'CREATE TABLE {表名}' #创建表名  
     col_name=''
     for col_i in df:#创建列名和其类型
@@ -34,7 +22,15 @@ def 建表SQL语句(df,表名):
     return sql
 #主
 def csv创建sql(表名,sql_go=False):
-
+	import  pymysql
+	import  pymysql.cursors
+	connection=pymysql.connect(host='localhost',
+                           user='root',
+                           password='123456',
+                           db='test_data',
+                           port=3306,
+                           charset='utf8')
+	cursor = connection.cursor()
 	#读取csv,提取编译方式
 	#自动获取编译方式
 	# with open(表名,'rb') as file:
@@ -54,8 +50,18 @@ def csv创建sql(表名,sql_go=False):
 		cursor.execute(sql)#执行sql
 	else:
 		print(sql)
+	connection.close()
 
 def csv内容写入sql(表名,sql_go=False):
+	import  pymysql
+	import  pymysql.cursors
+	connection=pymysql.connect(host='localhost',
+                           user='root',
+                           password='123456',
+                           db='test_data',
+                           port=3306,
+                           charset='utf8')
+	cursor = connection.cursor()
 	#读取csv,提取编译方式
 	# with open(表名,'rb') as file:
 	#     s=file.read()
@@ -77,6 +83,8 @@ def csv内容写入sql(表名,sql_go=False):
 			cursor.execute(sql2)#执行sql
 		else:
 			print(sql2)
+
+	connection.close()
 
 def 找遍所有文件里某类型文件的路径(path,x=4,s='.csv'):
     '''   输入:#找遍path文件夹里所有尾部最后x=3位为s='.py'的文件
@@ -105,8 +113,7 @@ def 批量导入sql(文件路径,sql_go=False):
 if __name__ == '__main__':
 
 	路径="C:/Users/YcAllenEffy/Desktop/财务账/已处理账表2次"
-	批量导入sql(路径,0)
+	批量导入sql(路径,1)
 
 
-connection.close()
 

@@ -18,9 +18,10 @@ CICC	中金指数_板块61种
 SW	申万指数
 OTH  其他指数'''
 # df = pro.index_basic(market='SW')#获取市场里的指数
-df = pro.index_daily(ts_code='801004.SI', start_date='20171001', end_date='20171031')#获取具体指数每日数据
-df.to_excel('E:\pyNote\调用资料/64classNew.xlsx','Sheet1')#导出到excel
-
+# df = pro.index_daily(ts_code='000001.SZ', start_date='20210101', end_date='20210131')#获取具体指数每日数据
+# df.to_excel('E:\pyNote\调用资料/64classNew.xlsx','Sheet1')#导出到excel
+# df = pro.stock_basic(exchange='', list_status='L', fields='ts_code,symbol,name,area,industry,list_date')
+df = pro.daily(ts_code='000778.SZ', start_date='20210301', end_date='20210310')
 # df = pro.daily(ts_code='002466.SZ', start_date='20110101', end_date='20111231')#新接口,获取指定股票,日期的数据
 # x=ts.get_hist_data('002466',start='2011-01-01',end='2011-12-31')#旧接口
 print(df)
