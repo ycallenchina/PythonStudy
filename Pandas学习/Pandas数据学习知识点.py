@@ -30,7 +30,12 @@ print(type(df))#DataFrame的属性:两个索引,一是行索引index,二是列�
 for i in df:
 	print (i)
 
-
+def 获取df数据信息():
+	df.info()
+	pass
+def 判断df里的数据类型():
+	df=df.applymap(type)
+	
 def 读取每行(df):
 	# # iterrows按照行读取数据,每次读一行,迭代为(insex, Series)对。
 	# # iteritems按照列读取数据,每次读一列迭代为(列名, Series)对
@@ -46,6 +51,9 @@ def 读取每行(df):
 	# print(q)#计数器q
 	# print(k)#计数器k,看循环次数
 	# print(a)	
+def 删除列():
+	df=df.dorp(['列名1','列名2'],axis=1)#axis参数有两个值:0表示按照行操作,1表示按照列操作
+
 def 读取csv文件(路径):
 	#encoding为编译方式
 	df=pd.read_csv(路径,encoding='utf_8_sig',index_col=False)
@@ -63,10 +71,20 @@ def 写入excel多表(df):#pandas写入excel多张sheet表方法
 	with pd.ExcelWriter(r'E:/PythonStudy_Git/调用资料/newforPF.xlsx') as xlsx:
 		for i in df:
 			df[i].to_excel(xlsx, sheet_name=f"{i}", index=False)
+def 分组():
+	df=df.groupby('分组列')#按照分组列 分组
+	df=df.agg('mean')#取分组里数据的平均值
+	pass
 
 def 改df列名(df):
 	df.rename(columns={df.columns.values[0]:'序号'},inplace=True)#0为第一列
 	df.rename(columns={'A':'a', 'C':'c'}, inplace = True)#把A改为a,C为c
+	df.rename(columns={'被改列名':'改后列名'})#单列名修改
+
+def 列与列数据交互():
+	df['值1列+值2列']=df['值1列']+df['值2列']
+	pass
+
 def df提取列(df):
 	df=df[['序号','交易日期','记账金额','收_支''备注']]
 
@@ -103,13 +121,37 @@ def df时间属性(df):
 
 def 添加行记录(df):
 
-    record={'height':'199'}
-    df=df.append(record,ignore_index=True)
+	record={'height':'199'}
+	df=df.append(record,ignore_index=True)
 	return df
 
 def 创建新df():
 	df = pd.DataFrame(columns=['A', 'B', 'C', 'D'])
 	return df
+
+def 某列包含未知内容(df,列名='date',包含内容='未知',新列='新列1'):
+	# 返回所有包含内容的记录
+	df[新列]=df[df[列名].str.contains(包含内容)]
+	return df
+
+def df取值(df):
+	#当df为二维数组时,iloc里有两个参数,并可以做冒号:切片处理
+	行头,行尾,列头,列为=0,0,0,0
+	df.iloc[行头:行尾,列头:列尾]
+	# 当df为一维数组时,iloc里面只有一个参数,也可以做切片处理
+	df.iloc[行头:行尾]
+
+def 根据条件写入数据(df):
+	# 条件为在'time'列包含'150000000'的记录里写入1,否则写入0,并创建'新列'记录.
+	df['新列']=np.where(df['time'].str.contains("150000000"),1,0)
+
+def 创建or修改某个列里的数据(df):
+	索引=0#一般0为第一个数据
+	df.loc[index,'列名']='所修改的值'
+	
+def 空值nan处理(df):
+	df=df[df['列名'].notnull()]#取为不空值nan的记录
+	df=df[df['列名'].notnull()]#取为空值nan的记录
 
 # b=np.array(a)#列表转换为array格式
 # df = pd.DataFrame(a)#转换为dataframe格式

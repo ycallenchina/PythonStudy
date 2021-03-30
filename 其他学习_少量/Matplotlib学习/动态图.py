@@ -4,7 +4,7 @@ import matplotlib.ticker as ticker
 import matplotlib.animation as animation
 from IPython.display import HTML
 
-df = pd.read_excel(r'E:\pyNote\调用资料/51classNew.xlsx', 'Sheet1')  # 读取excel表格
+df = pd.read_excel(r'E:/pyNote/调用资料/51classNew.xlsx', 'Sheet1')  # 读取excel表格
 # print(df.info())#展示读取信息
 # print(df.head(2))#头两条
 df=df.iloc[:,1:5]

@@ -61,11 +61,6 @@ df3=pd.DataFrame({
     }
     )
 
-def 金额列clean(df):
-    df[["记账金额","余额"]]=df[["记账金额","余额"]].applymap(lambda x:x.replace(',',''))
-    df[["记账金额","余额"]]=df[["记账金额","余额"]].applymap(float)
-    return df
-
 def 保存csv文件(保存路径,df):
     df.to_csv(保存路径,encoding='utf_8_sig',index=False)#不要索引
 
@@ -109,9 +104,10 @@ if __name__ == '__main__':
     pd.set_option('display.max_columns', None)#显示所有df列
 
 
-
-    df = pd.DataFrame(columns=['A', 'B', 'C', 'D'])
-    print(df)
-    b={'height':'199','A':'100'}
-    df=df.append(b,ignore_index=True)
+    保存路径='C:/Users/YcAllenEffy/Desktop/333.csv'
+    df=读取csv(保存路径)
+    # df=df.applymap(type)
+    # df.info()
+    df=df.groupby('date')
+    df=df.agg('mean')
     print(df)

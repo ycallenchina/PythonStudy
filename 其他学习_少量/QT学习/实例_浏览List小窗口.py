@@ -412,7 +412,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "请选择保存路径："))# 设置标签文本
         self.pushButton_2.setText(_translate("MainWindow", "选择"))# 设置按钮文本
         item = self.tableWidget.horizontalHeaderItem(0)# 获取表格的第一列
-        item.setText(_translate("MainWindow", "期数"))# 设置表格第一列的标题
+        item.setText(_translate("MainWindow", "期数1"))# 设置表格第一列的标题
         item = self.tableWidget.horizontalHeaderItem(1)# 获取表格的第二列
         item.setText(_translate("MainWindow", "名称"))# 设置表格第二列的标题
         # 设置第一个选项卡的标题

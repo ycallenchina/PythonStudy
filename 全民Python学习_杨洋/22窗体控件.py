@@ -6,7 +6,7 @@ def task1():
     return
 
 def save():
-    f=open('e:\pyNote\调用资料/entry2.txt','a')
+    f=open('e:/pyNote/调用资料/entry2.txt','a')
     f.write(t1.get(1.0,'end'))
     f.close()
 

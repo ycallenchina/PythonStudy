@@ -2,8 +2,10 @@
 import baostock as bs
 import pandas as pd
 
-
 #http://baostock.com/baostock/index.php/%E9%A6%96%E9%A1%B5官网
+
+def 保存csv文件(保存路径,df):
+    df.to_csv(保存路径,encoding='utf_8_sig',index=False)
 #### 登陆系统 ####
 lg = bs.login()
 # 显示登陆返回信息
@@ -29,6 +31,7 @@ while (rs.error_code == '0') & rs.next():
 df = pd.DataFrame(data_list, columns=rs.fields)
 print(df)
 
-
+保存路径='C:/Users/YcAllenEffy/Desktop/222.csv'
+保存csv文件(保存路径,df)
 #### 登出系统 ####
 bs.logout()

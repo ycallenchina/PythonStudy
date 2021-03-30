@@ -20,5 +20,3 @@ csv导出路径=f'C:/Users/YcAllenEffy/Desktop/财务账/{期数}明细2.csv'
 # C写入sql.批量导入sql(已处理2次路径,1)
 # D核销.批量核销(期数,play=1)
 E合并为csv.导出sql表为csv(期数,csv导出路径,play=1)
-
-
