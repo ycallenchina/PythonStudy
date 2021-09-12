@@ -89,3 +89,23 @@ MRO机制补充说明:
 所以，最好还会把object放入列表末尾。最终生成列表中元素顺序为：F->D->A->E->B->C->object
 资料图片网址:https://img2018.cnblogs.com/blog/1539768/201812/1539768-20181203145957255-31915685.png
 '''
+# 实例说明 继承关系.
+class A:
+	def go(self):
+		print('ImA')
+	pass
+class B:
+	pass
+class C:
+	pass
+class D(A,B):
+	pass
+class E(B,C):
+	def go(self):
+		print('ImE')
+	pass
+class F(D,E):
+	pass
+
+
+F().go()#居E级别比A高,但是然部是imE 是imA

@@ -2,11 +2,12 @@
 import baostock as bs
 import pandas as pd
 
-#http://baostock.com/baostock/index.php/%E9%A6%96%E9%A1%B5官网
+#官网
+#http://baostock.com/baostock/index.php/%E9%A6%96%E9%A1%B5
 
 def 保存csv文件(保存路径,df):
     df.to_csv(保存路径,encoding='utf_8_sig',index=False)
-def 获取个股df():
+def 获取个股df(标的="sh.603508",start='2020-02-04', end='2020-02-04'):
 	#### 登陆系统 ####
 	lg = bs.login()
 	# 显示登陆返回信息
@@ -19,9 +20,9 @@ def 获取个股df():
 	# frequency：数据类型，默认为d，日k线；d=日k线、w=周、m=月、5=5分钟、15=15分钟、30=30分钟、60=60分钟k线数据，
 	# frequency：不区分大小写；指数没有分钟线数据；周线每周最后一个交易日才可以获取，月线每月最后一个交易日才可以获取。
 	# adjustflag：复权类型，默认不复权：3；1：后复权；2：前复权。
-	rs = bs.query_history_k_data_plus("sz.000778",
+	rs = bs.query_history_k_data_plus(标的,
 	    "date,code,time,open,close",
-	    start_date='2021-03-01', end_date='2021-03-03',
+	    start_date=start, end_date=end,
 	    frequency="5", adjustflag="3")
 	
 

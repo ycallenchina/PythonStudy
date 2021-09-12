@@ -33,10 +33,16 @@ class peple(object):
 		self.持有=int(self.资金/price)#保留持股整数
 		self.资金=self.资金-self.持有*price#买后剩余资金
 		print('买入时间:',time_now[:4],time_now[4:8],time_now[8:12],)
+		con='买入时间:'+str(time_now[:8])+' '+str(time_now[8:12])+'\n'
 		print('买入价格:',price)
+		con=con+'买入价格:'+str(price)+'\n'
 		print('买入资金量:',self.持有*price)
+		con=con+'买入资金量:'+str(self.持有*price)+'\n'
 		print('剩余资金:', round(self.资金,2))
+		con=con+'剩余资金量:'+str(round(self.资金,2))+'\n'
+		con=con+'-----------------------------'+'\n'
 		print('-----------------------------')
+		return con
 
 	def sell_stock(self,price,time_now):#卖
 
@@ -58,12 +64,14 @@ class peple(object):
 		best_price=self.进场价#best_price为十个交易日内的最高价
 		if price>best_price :
 			print(f'买入操作:因为当前价格{price}大于进场价{self.进场价}')
-			self.buy_stock(price,time_now)
+			buy_meg=f'买入操作:因为当前价格{price}大于进场价{self.进场价}'+'\n'
+			buy_meg=buy_meg+self.buy_stock(price,time_now)
 			self.当前策略=self.decide1
+			return buy_meg	
 
 	def decide1(self,price,ma,time_now):#决策1
 		if price<3.5:
-			self.sell_stock(price)
+			self.sell_stock(price,time_now)
 			self.当前策略=self.over
 		elif price>3.8:
 			ma5=ma
@@ -78,7 +86,8 @@ class peple(object):
 			self.当前策略=self.over
 	
 	def 执行策略(self,price,ma=5,time_now='20210201145600000'):
-		self.当前策略(price,ma,time_now)
+		策略_msg=self.当前策略(price,ma,time_now)
+		return 策略_msg
 
 def 距ending时间(s):#默认为0时差
 	from datetime import datetime
@@ -88,27 +97,27 @@ def 距ending时间(s):#默认为0时差
 	# print('距离ending时间:',delta.seconds,'秒')#距离盘末时间提示
 	return delta.seconds
 
+if __name__ == '__main__':
+	#获取股票数据
+	pd.set_option('display.max_columns', None)#显示所有df列
+	路径='C:/Users/YcAllenEffy/Desktop/333.csv'
+	df=读csv为df(路径)
+	df['time']=df['time'].apply(str)#把时间列的数据int类变为str类
+	# print(df)
 
-#获取股票数据
-pd.set_option('display.max_columns', None)#显示所有df列
-路径='C:/Users/YcAllenEffy/Desktop/333.csv'
-df=读csv为df(路径)
-df['time']=df['time'].apply(str)#把时间列的数据int类变为str类
-
-#读取股价,执行策略
-a=peple()
-for index,row in df.iterrows():
-	# print('time:',row['time'],'close,',row['close'],'ma5:',row['ma5'])
-	a.执行策略(row['close'],row['ma5'],row['time'])
-
-
-print('本次策略回测时间为:2021/01/08至2021/03/03,回测标的为:sz.000778,共有1632条记录,执行操作2次.')
+	a=peple()
+	for index,row in df.iterrows():
+		# print('time:',row['time'],'close,',row['close'],'ma5:',row['ma5'])
+		a.执行策略(row['close'],row['ma5'],row['time'])
 
 
-# #简易模拟
-# 价格=[5,4.2,4.6,4.7,4.9,4.77,6.1,99]
-# for i in 价格:
-# 	print('--------------')
+	# print('本次策略回测时间为:2021/01/08至2021/03/03,回测标的为:sz.000778,共有1632条记录,执行操作2次.')
+
+
+	# #简易模拟
+	# 价格=[5,4.2,4.6,4.7,4.9,4.77,6.1,99]
+	# for i in 价格:
+	# 	print('--------------')
 
 
 		

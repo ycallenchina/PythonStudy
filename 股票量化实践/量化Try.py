@@ -1,25 +1,19 @@
 
 
+def go_回测():
+	import 获取股票数据
+	import 均线计算
+	import 新兴股票策略
 
+	df=获取股票数据.获取个股df(标的="sz.000757",start='2021-02-06', end='2021-03-03')
+	df=均线计算.增加ma列(df)
+	print(df)
+	df.info()
 
-def decide1(x):
-	global 策略序号
-	if x>1:
-		print('ok1')
-		策略序号+=1
-def decide2(x):
-	global 策略序号
-	if x>2:
-		print('ok2')
-		策略序号+=1
-def decide3(x):
-	global 策略序号
-	if x<4:
-		print('ok3')
-		策略序号+=1
+	a=新兴股票策略.peple()
 
-
-import 实践
-
-
-print(实践.peple)
+	for index,row in df.iterrows():
+		t=a.执行策略(row['close'],row['ma5'],row['time'])
+		if not(t is None):
+			pass
+		# print(t)

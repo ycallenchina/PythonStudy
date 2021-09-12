@@ -1,73 +1,39 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-#@Author           :  BigBro
-#@DateTime         :  2015-11-17 16:57:30
-#@Filename         :  weiyunsc_2.2.py
-#@Description      :  微云收藏 2.2 自动检测 剪贴板 
 
 
-import tkinter
-import urllib.parse
-import os
+# -*- coding:utf-8 -*-
+import numpy as np
+from matplotlib import pyplot as plt
+from matplotlib import animation
+import matplotlib
 
-running = False # Global flag
-old_text = ' '
-def getClipboardText(tk):
-    # win32clipboard.OpenClipboard()
-    # result = win32clipboard.GetClipboardData(win32con.CF_TEXT)
-    # win32clipboard.CloseClipboard()
-    result = tk.clipboard_get()
-    return result
+# print matplotlib.matplotlib_fname()
+ 
+fig = plt.figure()
+ax = plt.axes(xlim=(0, 2), ylim=(-2, 2))#设置坐标
+line, = ax.plot([], [], lw=2)
 
-def weiyunsc2_0(tk):
-    #input('复制网址，回车')
-    url=getClipboardText(tk)
-    #url=url.decode('utf-8') #transform bytes into str  #tk下 获取的内容直接为str,不需要转换
-    url = str(url)
-    
-    chrome = 'chrome.exe'
+def init():
+    line.set_data([], [])
+    return line,
+ 
 
-    prefix = r'http://sc.qq.com/'
-    prefix2 =r'mp.weixin.qq.com' 
-    if url.startswith(prefix):
-        url = url[17:] #strip 'http://sc.qq.com/'
-        url= urllib.parse.unquote(url)
-        url_list_str = ''.join([u  if u !='&' else '^&' for u in list(url) ]) #cmd 命令行 对&是保留字,需要^来转义
-        os.system("{0} {1}".format(chrome,url_list_str))
-    elif url.startswith(prefix2):
-        os.system("{0} {1}".format(chrome,url))
-    else:   
-        url=''.join([u  if u !='&' else '^&' for u in list(url) ])#如果u !='&'则u就是u,否则,u='^&'
-        os.system("{0} {1}".format(chrome,url))
-
-def WatchClipboard(tk):#监视剪切板 返回
-    global old_text
-    text = getClipboardText(tk)
-    if running:
-        if old_text != text:
-            weiyunsc2_0(tk)
-            old_text = text
-    tk.after(500, lambda:WatchClipboard(tk))
-
-def start():
-    """Enable scanning by setting the global flag to True."""
-    global running
-    running = True
-
-if __name__ == '__main__':
-    top = tkinter.Tk() #定义一个窗口
-    top.title('微云收藏2.2') #定义窗口标题
-    top.geometry('400x200')     #定义窗体的大小，是400X200像素
-
-    func = tkinter.Button(top,text='开始',command = start)
-    func.pack(expand = 'yes', fill = 'both')
+def animate(i):
+	# print(x)
+    #linespace(起始值(start),终止值(stop),数量(num)=50,
+    #是否包含终止值(endpoint)=True,是否返回步长(retstep)=False,数据类型(dtype)=None)
+	x1=x[:i]
+	y1 = np.sin(2 * np.pi * (x1 - 0.01 * 0.2))
+	# print(x1)
+	# print(y1)
+	line.set_data(x1, y1)
+	return line,
 
 
-    quit = tkinter.Button(top, text='Quit',
-        command=top.quit)
-    quit.pack(expand='yes', fill = 'both')
+x = np.linspace(0, 2, 10)
 
-    top.after(500, lambda:WatchClipboard(top))
 
-    tkinter.mainloop()
+#FuncAnimation 参数: frames动画长度 interval 更新频率ms计算 blit选择更新所有点True,只更新变化点Flase
+anim = animation.FuncAnimation(fig, animate, init_func=init,frames=200, interval=200, blit=True)
+
+# anim.save('sin.gif', fps=75, writer='imagemagick')
+plt.show()

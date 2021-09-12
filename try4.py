@@ -1,18 +1,10 @@
-import time
-def time_out(late=100):#随机时间函数
-	import time
-	import random
-	rand=random.randint(1,late)/100
-	time.sleep(rand)
-	print('延时',rand,'秒...')
-	return rand
-t1=time.strftime("%m-%d %H:%M:%S", time.localtime()) 
-t2=time.strftime("%m-%d %H:%M:%S", time.localtime()) 
+def 距ending时间(s):#默认为0时差
+     from datetime import datetime
+     t=datetime.strptime(s,'%Y-%m-%d %H:%M:%S')
+     t_today=datetime(t.year,t.month,t.day,15)
+     delta=t_today-t
+     # print('距离ending时间:',delta.seconds,'秒')#距离盘末时间提示
+     return delta.seconds/60
 
 
-
-ticks1 = time.time()
-time_out(100)
-ticks2 = time.time()
-ticks3=ticks2-ticks1
-print(round(ticks3,2))
+print(距ending时间('2017-01-03 14:35:00'))

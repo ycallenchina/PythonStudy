@@ -147,12 +147,22 @@ def 根据条件写入数据(df):
 
 def 创建or修改某个列里的数据(df):
 	索引=0#一般0为第一个数据
-	df.loc[index,'列名']='所修改的值'
+	df.iloc[index,'列名']='所修改的值'
 	
 def 空值nan处理(df):
 	df=df[df['列名'].notnull()]#取为不空值nan的记录
 	df=df[df['列名'].notnull()]#取为空值nan的记录
 
+def 设置索引(df):
+	#方法一 把列直接放入索引列
+	df=df.set_index('df的列名')
+	#方法二 把列复制放入索引列
+	df.index=df['df的列名']
+	pass
+
+def 添加索引(df):
+	df.set_index('month',append=True)
+	pass
 # b=np.array(a)#列表转换为array格式
 # df = pd.DataFrame(a)#转换为dataframe格式
 # df列名获取    :for column in df1.columns.values: 读取df的列名

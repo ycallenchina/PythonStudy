@@ -102,12 +102,8 @@ def 插入索引列(df):
 
 if __name__ == '__main__':
     pd.set_option('display.max_columns', None)#显示所有df列
-
-
-    保存路径='C:/Users/YcAllenEffy/Desktop/333.csv'
-    df=读取csv(保存路径)
-    # df=df.applymap(type)
-    # df.info()
-    df=df.groupby('date')
-    df=df.agg('mean')
+    路径='C:/Users/YcAllenEffy/Desktop/新兴股价表.csv'
+    df=读取csv(路径)
     print(df)
+
+

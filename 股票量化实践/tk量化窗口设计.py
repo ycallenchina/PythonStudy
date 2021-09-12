@@ -22,7 +22,7 @@ def enab_lfm2():
     entr2_3["state"] ="normal"
     entr2_4["state"] ="normal"
     entr2_5["state"] ="normal"
-    entr2_6["state"] = "normal"
+    entr2_6["state"] ="normal"
  
 def disab_lfm2():
     entr2_1["state"] ="disable"
@@ -30,7 +30,7 @@ def disab_lfm2():
     entr2_3["state"] ="disable"
     entr2_4["state"] ="disable"
     entr2_5["state"] ="disable"
-    entr2_6["state"] = "disable"
+    entr2_6["state"] ="disable"
  
 def change_stat():
     if checkbox_val.get():
@@ -106,11 +106,32 @@ def web_moniter():
         if checkbox_val.get():
             send_mail()
 
-def new_thread2():
+
+def 回测_thread2():
     global td
-    td = threading.Thread(target=happy)
+
+    td = threading.Thread(target=happy2)
     td.setDaemon(True)
     td.start()
+
+def happy2():
+    global td
+    import 获取股票数据
+    import 均线计算
+    import 新兴股票策略
+
+
+    df=获取股票数据.获取个股df(标的=entr1_1.get(),start=entr1_2.get(), end=entr1_3.get())
+    df=均线计算.增加ma列(df)
+    a=新兴股票策略.peple()
+
+    for index,row in df.iterrows():
+        t=a.执行策略(row['close'],row['ma5'],row['time'])
+        if not(t is None):
+            # txinfo3_1.delete(1.0, END)
+            txinfo3_1.insert(1.0, t)
+            txinfo3_1.insert(1.0, '----------------\n')
+            txinfo3_1.see(END)
 
 def uptate_text():#更新输入框体函数
     global td
@@ -122,6 +143,13 @@ def uptate_text():#更新输入框体函数
         smtp_var2.set(content)
         entr2_1 = Entry(labelframe2,width=30,textvariable=smtp_var2, state="disable")#state='disable'参数为 不可更改.
         entr2_1.grid(row=1, column=0)
+
+def new_thread2():
+    global td
+
+    td = threading.Thread(target=happy)
+    td.setDaemon(True)
+    td.start()
 
 def happy():#更新文本框的函数
     global td
@@ -136,6 +164,10 @@ def happy():#更新文本框的函数
         txinfo3_1.insert(1.0, i)
         txinfo3_1.insert(1.0, '----------------\n')
         txinfo3_1.see(END)
+
+def list_1():
+    l=[1,2,3]
+    return l
 
 #从运行中停止后的改变
 def stop_moniter():
@@ -214,8 +246,8 @@ entr2_2 = Entry(labelframe2,width=25,textvariable=user_var,state="disable")
 entr2_2.grid(row=3, column=0,sticky=E)
 user_var2=StringVar()
 user_var2.set("时间发生在盘末5分钟")
-entr2_2 = Entry(labelframe2,width=25,textvariable=user_var2,state="disable")
-entr2_2.grid(row=4, column=0,sticky=E)
+entr2_3 = Entry(labelframe2,width=25,textvariable=user_var2,state="disable")
+entr2_3.grid(row=4, column=0,sticky=E)
 pw_var=StringVar()
 pw_var.set("password")
 # entr2_3 = Entry(labelframe2,width=30,textvariable=pw_var, show="@",state="disable")
@@ -242,7 +274,7 @@ btn2_r=Button(frame4,width=10,text ="停止中", state="disable", command=stop_m
 btn2_r.grid(row=0, column=1)
 # btn3_r=Button(frame4,width=10,text ="update", command=new_thread2)#第三个按钮
 # btn3_r.grid(row=1, column=0)
-btn4_r=Button(labelframe1,width=10,text ="回测", command=new_thread2)#第三个按钮
+btn4_r=Button(labelframe1,width=10,text ="回测", command=回测_thread2)#第三个按钮
 btn4_r.grid(row=5, column=1)
 monit_state = True
 
