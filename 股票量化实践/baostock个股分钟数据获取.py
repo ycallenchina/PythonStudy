@@ -8,7 +8,7 @@ import numpy as np
 
 def 保存csv文件(保存路径,df):
     df.to_csv(保存路径,encoding='utf_8_sig',index=False)
-def 获取个股df(标的="sh.603508",start='2017-01-01', end='2017-02-20'):
+def 获取个股df(标的="sh.603508",start='2017-01-01', end='2017-09-10'):
 	#### 登陆系统 ####
 	lg = bs.login()
 	# 显示登陆返回信息
@@ -24,7 +24,7 @@ def 获取个股df(标的="sh.603508",start='2017-01-01', end='2017-02-20'):
 	rs = bs.query_history_k_data_plus(标的,
 	    "date,code,time,open,close,volume,amount,high,low",
 	    start_date=start, end_date=end,
-	    frequency="15", adjustflag="3")
+	    frequency="5", adjustflag="1")
 	
 
 	print('query_history_k_data_plus respond error_code:'+rs.error_code)
@@ -43,9 +43,8 @@ def 获取个股df(标的="sh.603508",start='2017-01-01', end='2017-02-20'):
 	#### 登出系统 ####
 
 # 读取csv 股票数据
-def 获取csv数据():
+def 获取csv数据(保存路径):
 
-	保存路径='C:/Users/YcAllenEffy/Desktop/样本股票603508.csv'
 	df=pd.read_csv(保存路径)
 	return df
 
@@ -53,6 +52,6 @@ if __name__ == '__main__':
 	# pass
 	df=获取个股df()	
 	print(df)
-	保存路径='C:/Users/YcAllenEffy/Desktop/样本股1.csv'
-	保存csv文件(保存路径,df)
+	# 保存路径='C:/Users/YcAllenEffy/Desktop/样本股1.csv'
+	# 保存csv文件(保存路径,df)
 	

@@ -127,7 +127,26 @@ def 回测(df_ch2,df):
             
     return df_ch2
 
+ def 回测7日峰值(df,df_all):
+    
+    for index,row in df.iterrows():
         
+        峰值日=7
+        峰值日期=df_all.iloc[index+(峰值日*48),9]
+        start=1
+        max_values=0
+        start_index=index
+        
+        while start==1:
+            index+=1
+            if (峰值日期-df_all.iloc[index,9]).total_seconds()>0:
+                if max_values<df_all.iloc[index,7]:
+                    max_values=df_all.iloc[index,7]
+            else:
+                df.loc[start_index,'7日峰值']=round(max_values,2)
+                start=0
+    return df
+
 if __name__ == '__main__':
     pd.set_option('display.max_columns',None )
     import df股票数据处理 as 处理
