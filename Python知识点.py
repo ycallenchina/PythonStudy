@@ -42,3 +42,11 @@ def 命令行安装包():
 
 	pass
 
+def 进度条():
+	
+	from time import sleep
+	from tqdm import tqdm
+
+	for i in tqdm(range(1,100)):
+		sleep(0.1)
+	sleep(0.5)
