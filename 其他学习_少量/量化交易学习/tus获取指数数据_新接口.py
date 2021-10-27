@@ -1,6 +1,6 @@
 
 # tushare 新接口 账号:14739570251 密码 a坤
-
+# https://waditu.com/ 接口首页
 
 import  tushare as ts
 import pandas as pd
@@ -21,9 +21,11 @@ OTH  其他指数'''
 # df = pro.index_daily(ts_code='000001.SZ', start_date='20210101', end_date='20210131')#获取具体指数每日数据
 # df.to_excel('E:\pyNote\调用资料/64classNew.xlsx','Sheet1')#导出到excel
 # df = pro.stock_basic(exchange='', list_status='L', fields='ts_code,symbol,name,area,industry,list_date')
-df = pro.daily(ts_code='000778.SZ', start_date='20210301', end_date='20210310')
+df = pro.daily(ts_code='688389.SH,002981.SZ,300244.SZ,300234.SZ', start_date='20211025', end_date='20211027')
 # df = pro.daily(ts_code='002466.SZ', start_date='20110101', end_date='20111231')#新接口,获取指定股票,日期的数据
 # x=ts.get_hist_data('002466',start='2011-01-01',end='2011-12-31')#旧接口
+
+pd.set_option('display.max_columns', None)
 print(df)
 
 
