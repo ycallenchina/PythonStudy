@@ -186,40 +186,106 @@ def stop_moniter():
     else:
         # disab_lfm2()
         pass
-#构造windows外观及默认值
 
+
+#----------------------------TK设计----------------------------------------
 #构造windows外观及默认值
+# 初始化,设置标题
 root = Tk()
 root.title("黄志成量化系统1.0")
+
+# (0,0)表示限制根窗口以更改其大小(固定大小的窗口)。若不限制resizable(True,True)
 root.resizable(0,0)
-labelframe1 = LabelFrame(root,width=25, height=30, text="回测股票设置")
-labelframe1.grid(row=0, column=0,sticky=N)
-labelframe2 = LabelFrame(root, width=25, height=20,text="策略信息")
+# 初始化参数------------------------------------------------------------
+entry_widthLong=32
+entry_widthShort=16
+
+# 窗体的框体布局设计-----------------------------------------------------
+
+# 设置框体labelframe1,名字text为:
+labelframe1 = LabelFrame(root,width=1, height=1, text="框体1")
+# 定位:row=0,column=0表示框体在窗体第一行第一列.
+labelframe1.grid(row=0, column=0,sticky=N)#框体布局方式 一行一列,顶对齐.
+'''
+sticky 对齐参数说明:
+sticky=N/S/E//W:顶端对齐/底端对齐/右对齐/左对齐
+sticky=N+S：拉伸高度，使其在水平方向上顶端和底端都对齐
+sticky=N+S+E:拉伸高度，使其在水平方向上对齐，并将控件放在右边
+（当两个控件放在同一行同一列时效果明显）'''
+
+#框体2
+labelframe2 = LabelFrame(root, width=1, height=1,text="框体2")
 labelframe2.grid(row=1, column=0,sticky=S)
-labelframe3 = LabelFrame(root, text="监控结果")
-labelframe3.grid(row=0, column=1, rowspan=3,sticky=N)
-leble1_1 = Label(labelframe1, text="回测股票：")
-leble1_1.grid(row=0, column=0,sticky=W)
-leble1_2 = Label(labelframe1, text="回测开始时间：")
-leble1_2.grid(row=2, column=0,sticky=W, )
-leble1_3 = Label(labelframe1, text="回测结束时间：")
-leble1_3.grid(row=4, column=0,sticky=W, )
-web_addr=StringVar()
-web_addr.set("sz.000778")
-entr1_1 = Entry(labelframe1,width=32,textvariable=web_addr)#网页地址
-entr1_1.grid(row=1, column=0, columnspan=2,sticky=W)
+
+#文本框体
+# rowspan=3表示向下合并3行.
+labelframe3 = LabelFrame(root, width=1, height=1,text="文本框体")
+labelframe3.grid(row=0, column=1,rowspan=3,sticky=N)
+
+#设置框体frame4,区别于lableframe 没有框体线
+frame4=Frame(root)
+frame4.grid(row=2,column=0)
+
+
+# 设置框体1内的内容--------------------------------------------------------------
+
+#初始化内容文字设置
+web_addr=StringVar()#变量声明
+web_addr.set("sz.000778")#设置变量默认值
 moni_time =StringVar()
 moni_time.set('2021-01-01')
 moni_time2 =StringVar()
 moni_time2.set('2021-03-01')
-entr1_2 = Entry(labelframe1, width=10, textvariable=moni_time) #起时间
-entr1_2.grid(row=3, column=0,sticky=W)
-entr1_3 = Entry(labelframe1, width=10, textvariable=moni_time2) #末时间
-entr1_3.grid(row=5, column=0,sticky=W)
 checkbox_val=BooleanVar()
 checkbox_val.set(False)
+
+#框体布局
+leble1_1 = Label(labelframe1, text="回测股票：")
+leble1_1.grid(row=0, column=0,sticky=W)
+
+leble1_2 = Label(labelframe1, text="回测开始时间：")
+leble1_2.grid(row=2, column=0,sticky=W, )
+
+leble1_3 = Label(labelframe1, text="回测结束时间：")
+leble1_3.grid(row=4, column=0,sticky=W, )
+
+entr1_1 = Entry(labelframe1,width=32,textvariable=web_addr)#网页地址
+entr1_1.grid(row=1, column=0, columnspan=2,sticky=W)
+
+entr1_2 = Entry(labelframe1, width=10, textvariable=moni_time) #起时间
+entr1_2.grid(row=3, column=0,sticky=W)
+
+entr1_3 = Entry(labelframe1, width=10, textvariable=moni_time2) #末时间
+entr1_3.grid(row=5, column=0,sticky=W)
+
+#复选框用checkbox_val的值来控制change_stat(控制输入框内容变不能写入),1开启,0关闭
 checkbox1_3 = Checkbutton(labelframe1,variable=checkbox_val, text="是否...", command=change_stat)
 checkbox1_3.grid(row=3, column=1)
+
+#回测按钮
+btn4_r=Button(labelframe1,width=10,text ="回测", command=回测_thread2)#第三个按钮
+btn4_r.grid(row=5, column=1)
+
+# 设置框体2内的内容--------------------------------------------------------------
+
+#初始化内容文字设置
+smtp_var=StringVar()
+smtp_var.set("当前价格 大于  进场价")
+user_var=StringVar()
+user_var.set("当前价格 大于 平仓价,且小于均线")
+user_var2=StringVar()
+user_var2.set("时间发生在盘末5分钟")
+pw_var=StringVar()
+pw_var.set("password")
+title_var=StringVar()
+title_var.set("-*-------*-")
+title_var=StringVar()
+title_var.set("......")
+title_var=StringVar()
+title_var.set("......")
+
+
+#框体布局---标题文字布局
 leble2_1 = Label(labelframe2, text="进场策略")
 leble2_1.grid(row=0, column=0,sticky=W)
 leble2_2 = Label(labelframe2, text="平仓策略")
@@ -236,47 +302,36 @@ leble2_7 = Label(labelframe2, text="条件1")
 leble2_7.grid(row=3, column=0,sticky=W)
 leble2_8 = Label(labelframe2, text="条件2")
 leble2_8.grid(row=4, column=0,sticky=W)
-smtp_var=StringVar()
-smtp_var.set("当前价格 大于  进场价")
+
+#框体布局---输入框布局
 entr2_1 = Entry(labelframe2,width=30,textvariable=smtp_var, state="disable")#state='disable'参数为 不可更改.
 entr2_1.grid(row=1, column=0)
-user_var=StringVar()
-user_var.set("当前价格 大于 平仓价,且小于均线")
 entr2_2 = Entry(labelframe2,width=25,textvariable=user_var,state="disable")
 entr2_2.grid(row=3, column=0,sticky=E)
-user_var2=StringVar()
-user_var2.set("时间发生在盘末5分钟")
 entr2_3 = Entry(labelframe2,width=25,textvariable=user_var2,state="disable")
 entr2_3.grid(row=4, column=0,sticky=E)
-pw_var=StringVar()
-pw_var.set("password")
-# entr2_3 = Entry(labelframe2,width=30,textvariable=pw_var, show="@",state="disable")
-# entr2_3.grid(row=5, column=0)
-title_var=StringVar()
-title_var.set("-*-------*-")
 entr2_4 = Entry(labelframe2,width=30,textvariable=title_var,state="disable")
 entr2_4.grid(row=7, column=0)
-title_var=StringVar()
-title_var.set("......")
 entr2_5 = Entry(labelframe2,width=30,textvariable=title_var,state="disable")
 entr2_5.grid(row=9, column=0)
-title_var=StringVar()
-title_var.set("......")
 entr2_6 = Entry(labelframe2,width=30,textvariable=title_var,state="disable")
 entr2_6.grid(row=11, column=0)
-txinfo3_1=ScrolledText(labelframe3, height=50, width = 60)
+
+
+
+# 设置文本框体内容--------------------------------------------------------------
+#滚动文本窗口ScrolledText
+txinfo3_1=ScrolledText(labelframe3, height=50, width = 80)
 txinfo3_1.pack()
-frame4=Frame(root)
-frame4.grid(row=2,column=0)
+
+# 设置框体3内容--------------------------------------------------------------
 btn1_r=Button(frame4,width=10,text ="开始", command=new_thread)
 btn1_r.grid(row=0, column=0)
+
 btn2_r=Button(frame4,width=10,text ="停止中", state="disable", command=stop_moniter)
 btn2_r.grid(row=0, column=1)
-# btn3_r=Button(frame4,width=10,text ="update", command=new_thread2)#第三个按钮
-# btn3_r.grid(row=1, column=0)
-btn4_r=Button(labelframe1,width=10,text ="回测", command=回测_thread2)#第三个按钮
-btn4_r.grid(row=5, column=1)
+#设置双按钮的初始值为True,通过点击变化按钮文字名,以及石化状态
 monit_state = True
 
-
+#----------------------------TK运行-----------------------------------------
 root.mainloop()
