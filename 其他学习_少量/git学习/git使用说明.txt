@@ -1,0 +1,23 @@
+----git 的使用说明----
+
+获取git文件操作:
+	第一步: 下载git安装到电脑上
+	第二部:打开cmd or linux控制台
+	第三步:在git的网站 把仓库项目 克隆到本地文件,命令如下:git clone "http地址",
+	第四步:gitee需要,输入账户名以及密码,ycallen,a坤
+
+上传git文件操作:
+	第一步:    cd 根目录名                            进入git 文件根目录 ,命令如下: 
+	第二部:    git add 文件名                         添加需要更新文件到git,命令如下: 
+	第三步:    git commit -m "确认信息"      确认提交文件,且填写确认信息: 
+	第四步:    git push                                 推送到git: 
+
+恢复git文件操作:
+	Git 恢复某个文件指定版本
+	1. git log  文件名          找到对应版本<commit id >
+	2. git checkout <commit id> 文件名
+	3. git commit -m "恢复的版本信息"
+
+其他git使用:
+	git pull 从远端更新本地git(如无分支选择)
+	
