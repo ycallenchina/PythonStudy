@@ -8,6 +8,8 @@ root =Tk()#创建窗体
 root.geometry('200x600')
 root.title('变量监视')#设置标题
 
+dic=['allen','yc','qqqq']
+dic2=[1,2,3]
 
 lable = Label(root, text="变量监控", font=("Fixedsys", 12), width=8, height=1)
 
@@ -23,10 +25,10 @@ tree.column('3',width=50,anchor='center')
 
 
 #插入数值
-tree.heading('1',text='i变量')
-for i in range(20):
+tree.heading('3',text='i变量')
+# for i in range(20):
 
-	tree.insert('','end',values=i)
-
+tree.insert('','end',values=dic)
+tree.insert('','end',values=dic2)
 lable.place(x=0,y=0)
 root.mainloop()#显示窗体
