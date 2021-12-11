@@ -1,0 +1,24 @@
+flask 根目录问题(访问静态文件的方法)
+原文地址:https://www.cnblogs.com/kaibindirver/p/12856585.html
+
+
+一:默认根目录产生的原因
+app=Flask(__name__) 
+
+二、修改查看静态文件的路径的方法 (静态文件 图片 css 等)
+
+2-1，默认情况下 ，flask 会去找 项目个目录下 static文件 为静态文件
+
+使用url访问 http://0.0.0.0:5000/static/lucax.jpg 就可以访问成功
+
+2-2，当我们想改版静态文件的路径时，在Flak()中传入 参数static_folder 即可改变访问的路径和指定文件存在的位置
+
+如: app=Flask(__name__,static_folder='view_models/lucax')
+
+使用url访问http://0.0.0.0:5000/lucax/lucax.jpg 就可以访问成功
+
+2-3，当我们想改变图片的访问的url，在Flak()中传入 参数static_url_path即可改变访问的路径
+
+如: app=Flask(__name__,static_folder='view_models/lucax', static_url_path="/uuu")
+
+使用url访问http://0.0.0.0:5000/uuu/lucax.jpg 就可以访问成功
