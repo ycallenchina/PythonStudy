@@ -31,6 +31,8 @@ files = etc/webapp/*.ini
 
 ​		追加的类容意思:在etc/webapp文件里所有后缀.ini的文件随supervisor自动启动。
 
+​		`提示:修改配置文件语法,每条语句前面带;号的,表示已经注释了不会被执行.`
+
 > 注意:在默认tmp的文件目录下会被linux删除,加载配置文件时会报错:
 >
 > unix:///tmp/supervisor.scok不存在,解决方法时把tmp换成var/run 和var/log,具体内容见<Web开发一书>79页.
@@ -91,8 +93,3 @@ supervisorctl shutdown
 supervisord 用来启动suervisor
 supervisorctl 启动supervisor后用来控制运行supervisor
 ```
-
-
-
-<table><tr><td background-color=rgba(255,123,121,0.6);>这里的背景色是：OrangeRed， 十六进制颜色值：#FF4500， rgb(255, 69, 0)</td></tr></table>
-
