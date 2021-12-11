@@ -1,0 +1,10 @@
+nginx 反向代理:  根据路径访问不同端口
+
+打开8888端口flask服务器
+原文件地址:http://119.91.208.26:8888/static/vod/cy.png
+nginx代理后访问地址:http://119.91.208.26/static/vod/cy.png
+
+
+打开5000端口flask服务器
+原文件地址:http://119.91.208.26:5000/static/edu/banner2.png
+nginx代理后:http://119.91.208.26/static/edu/banner2.png
