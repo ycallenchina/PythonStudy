@@ -1,0 +1,3 @@
+fig#为sns的图像
+scatter_fig = fig.get_figure()
+scatter_fig.savefig(fig_path, dpi = 400)
