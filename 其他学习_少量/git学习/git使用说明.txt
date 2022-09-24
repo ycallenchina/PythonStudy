@@ -14,9 +14,10 @@
 
 恢复git文件操作:
 	Git 恢复某个文件指定版本
-	1. git log  文件名          找到对应版本<commit id >
+	1. git log  文件名          #找到对应版本<commit id >
 	2. git checkout <commit id> 文件名
 	3. git commit -m "恢复的版本信息"
+	4. git push origin master   #推送到gittee网
 
 其他git使用:
 	git pull 从远端更新本地git(如无分支选择)
